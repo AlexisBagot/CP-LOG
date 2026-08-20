@@ -1,0 +1,64 @@
+#include <algorithm>
+#include <iostream>
+#include <map>
+#include <string>
+#include <utility>
+#include <vector>
+
+int main()
+{
+    std::ios_base::sync_with_stdio(false);
+    std::cin.tie(NULL);
+
+    int nb_cases;
+    std::cin >> nb_cases;
+    while (nb_cases--)
+    {
+        int n, m;
+        std::cin >> n >> m;
+
+        int bea_total = 0;
+        int ver_total = 0;
+
+        int last_bea = -1;
+        int last_ver = -1;
+
+        for (int i = 0; i < n; i++)
+        {
+            int val;
+            std::cin >> val;
+            if (last_bea != -1)
+            {
+                bea_total += last_bea - val + 1;
+            }
+            last_bea = val;
+            if (i == n - 1)
+            {
+                bea_total += val;
+            }
+        }
+        for (int i = 0; i < m; i++)
+        {
+            int val;
+            std::cin >> val;
+            if (last_ver != -1)
+            {
+                ver_total += last_ver - val + 1;
+            }
+            last_ver = val;
+            if (i == m - 1)
+            {
+                ver_total += val;
+            }
+        }
+
+        if (bea_total >= ver_total)
+        {
+            std::cout << "1" << "\n";
+        }
+        else
+        {
+            std::cout << "2" << "\n";
+        }
+    }
+}
